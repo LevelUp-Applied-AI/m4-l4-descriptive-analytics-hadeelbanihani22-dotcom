@@ -12,12 +12,11 @@ import pandas as pd
 import numpy as np
 import matplotlib
 from seaborn.objects import KDE
-from torch import Use
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
-
+from tier2.eda_report_tier2 import generate_eda_report
 
 
 def load_and_profile(filepath):
@@ -226,7 +225,6 @@ def run_hypothesis_tests(df):
     print("\nGPA Across Departments ANOVA Test\n --------------------------------")
     print(f"F-statistic: {f_stat:.4f}\n")
     print(f"P-value: {p_val:.4f}\n")    
-    
 
 #Hypothesis 2: “Scholarship status is associated with department.”
 #Use a chi-square test: pd.crosstab() then scipy.stats.chi2_contingency()
@@ -244,6 +242,16 @@ def run_hypothesis_tests(df):
     print(f"Chi-square statistic: {chi2_stat:.4f}\n")   
     print(f"P-value: {p_val:.4f}\n")
     print(f"Degrees of freedom: {dof}\n")   
+    
+#Tier1
+# violin plot for gpa by department
+    plt.figure(figsize=(10, 8))     
+    sns.violinplot(x='department', y='gpa', data=df)
+    plt.title("GPA Distribution Across Departments")
+    plt.tight_layout()
+    plt.savefig("output/Tier 1 _gpa_by_department_violin.png")
+    plt.close()
+
     return results
 
 
@@ -261,6 +269,7 @@ def main():
     plot_distributions(df)
     plot_correlations(df)
     run_hypothesis_tests(df)
+    generate_eda_report(df)
 
 
 

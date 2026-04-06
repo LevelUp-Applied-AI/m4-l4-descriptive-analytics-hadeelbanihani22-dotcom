@@ -1,0 +1,2 @@
+numeric: 0 outliers
+integer: 0 outliers
