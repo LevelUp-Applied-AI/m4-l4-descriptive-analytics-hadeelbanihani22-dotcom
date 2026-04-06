@@ -12,7 +12,6 @@ import pandas as pd
 import numpy as np
 import matplotlib
 from seaborn.objects import KDE
-from torch import Use
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -226,7 +225,6 @@ def run_hypothesis_tests(df):
     print("\nGPA Across Departments ANOVA Test\n --------------------------------")
     print(f"F-statistic: {f_stat:.4f}\n")
     print(f"P-value: {p_val:.4f}\n")    
-    
 
 #Hypothesis 2: “Scholarship status is associated with department.”
 #Use a chi-square test: pd.crosstab() then scipy.stats.chi2_contingency()
